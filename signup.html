@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="validation.js" defer></script>
+  
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("signup-form");
+      const emailInput = document.getElementById("email-input");
+      const passwordInput = document.getElementById("password-input");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!email || !password) {
+          errorMessage.textContent = "Please fill out both email and password.";
+          errorMessage.style.color = "red";
+          return;
+        }
+
+        
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", password);
+
+        alert("Account created successfully! Please log in.");
+        window.location.href = "login.html"; 
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Sign Up</h1>
+    <p id="error-message"></p>
+    <form id="signup-form">
+        <div>
+            <label for="username-input"></label>
+            <input type="username" id="username" placeholder="Enter your username">
+          </div>
+      <div>
+        <label for="email-input"></label>
+        <input type="email" id="email-input" placeholder="Enter your email">
+      </div>
+      <div>
+        <label for="password-input"></label>
+        <input type="password" id="password-input" placeholder="Enter your password">
+      </div>
+      <div>
+        <label for="password-input"></label>
+        <input type="password" id="password-input" placeholder="confirm password">
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log In</a></p>
+  </div>
+</body>
+</html>
